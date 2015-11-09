@@ -4,7 +4,7 @@ Order placement data for Barker Bob's Bar's Bigger, Better Burger Bonanza
 -->
 
 <!-- An order identifies the customer, order type, burgers and anything special  -->
-<!ELEMENT order (customer, order_type, burgers, special)>
+<!ELEMENT order (customer, burger+, special?)>
 
 <!-- An order can be for eat in, takeout or delivery .. customer specified -->
 <!ATTLIST order
@@ -29,7 +29,7 @@ Burger customization
 - An optional name, should the customer wish
 to propose this as a menu itme
 -->
-<!ELEMENT burger (patty, cheeses, topping, sauce, instructions?, name?)>
+<!ELEMENT burger (patty, cheeses, topping*, sauce*, instructions?, name?)>
 
 <!-- A patty can be one of five types (assume beef), and might be named explicitly -->
 <!ELEMENT patty (#PCDATA)>
@@ -39,7 +39,7 @@ to propose this as a menu itme
 
 <!-- The customer can order to cheeses. Let's assume that one might
 go on top and one on bottom, and provide for unique codes for these. -->
-<!ELEMENT cheeses (#EMPTY)>
+<!ELEMENT cheeses EMPTY>
 <!ATTLIST cheeses
     top (american|swiss|jack|blue|gruyere|gouda|aged|goat|brie) #IMPLIED
     bottom (american|swiss|jack|blue|gruyere|gouda|aged|goat|brie) #IMPLIED
@@ -52,7 +52,7 @@ go on top and one on bottom, and provide for unique codes for these. -->
 >
 
 <!-- Sauces are similar to topings -->
-<!ELEMENT sauce (#EMPTY)>
+<!ELEMENT sauce EMPTY>
 <!ATTLIST sauce
     type (ketchup|mustard|mayo|fksauce) #REQUIRED
 >
